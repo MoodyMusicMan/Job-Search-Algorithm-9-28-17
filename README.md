@@ -1,3 +1,6 @@
+# Read Me Slightly out of date. Check code for more up-to-date info.
+## Main file has all the information
+
 # JobSearch
 #### This is a program designed to aid in the acquisition of employment by targeting jobs based on skills of the user.
 
