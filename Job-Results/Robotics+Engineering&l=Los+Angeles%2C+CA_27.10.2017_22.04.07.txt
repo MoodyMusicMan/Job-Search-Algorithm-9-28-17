@@ -1,0 +1,14 @@
+0.0985827727803,6170 : http://indeed.com/rc/clk?jk=32ef41e45a5f6e87&fccid=200a825acadb9338
+0.0846749484708,4560 : http://indeed.com/cmp/Harris-Corporation
+0.077072052488,3900 : http://indeed.com/cmp/BAE-Systems
+0.0381191832762,3760 : http://indeed.com/company/MGA-Entertainment/jobs/Electrical-Engineer-Intern-0a044de1de180440?fccid=d34d1da5bc80c293
+0.088864445538,3070 : http://indeed.com/rc/clk?jk=2a77f195fb44e16c&fccid=6ccc0d58f95adf45
+0.0454027833237,3070 : http://indeed.com/company/Opto--Knowledge-Systems,-Inc./jobs/Robotic-Centric-Electrical-Engineer-4620184e17a82487?fccid=77f73c2c897ebce8
+0.0855970992094,2880 : http://indeed.com/cmp/Universal-Electronics
+0.0401346052916,2600 : http://indeed.com/company/Planet-Escape-Room/jobs/Programmer-dceb892b3998dd52?fccid=af1a1acc3ff38e44
+0.0369368208564,2580 : http://indeed.com/rc/clk?jk=e9993469cf260857&fccid=74a10afdfe120da7
+0.039849903864,2570 : http://indeed.com/company/Happiest-Baby,-Inc./jobs/Senior-Electrical-Design-Engineer-16c95c2858835c5f?fccid=fe0173fda102ae73
+0.0361357096652,1620 : http://indeed.com/rc/clk?jk=0d17ec6440778640&fccid=5f6120eb2043fb54
+0.040151572185,1600 : http://indeed.com/rc/clk?jk=f4929a885b7f0644&fccid=5862d6b2d8e607b5
+0.0188850464768,770 : http://indeed.com/cmp/Tti,-Inc.
+0.00351323635535,370 : http://indeed.com/rc/clk?jk=373cca0f37130bc1&fccid=deb6d9a0875ed5d7

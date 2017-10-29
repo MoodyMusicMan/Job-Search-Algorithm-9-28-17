@@ -47,12 +47,27 @@ url_part1 = "http://www.indeed.com/jobs?q="     # - Leave Me - The root of initi
 url_part2 = "Robotics+Engineering"              # - Change Me - Part where target job area is defined, with + inbetween multiple words
 url_part3 = "&l=Los+Angeles%2C+CA"                   # - Change Me - City with +'s inbetween, state with %2C+ before 2 letter abreviation
 url_base = url_part1 + url_part2 + url_part3    #first web address
+
+# LA
+#url_base = 'http://www.indeed.com/jobs?q=Microcontroller&l=Los+Angeles%2C+CA'
+
+# CA
+# Not Search Yet
+url_base = 'http://www.indeed.com/jobs?q=Embedded+Systems&l=CA'
+url_part2 = 'Embedded_Systems'
+url_part3 = 'CA'
+
+
+
 print url_base
 
     #DEFINE DIRECTORY to store results in------------------------------------------------------------------------------
 currenTime = time.strftime("_%d.%m.%Y_%H.%M.%S")
 write_text_page_name = "C:/Users/M0J0/Documents/FOJ_2017/Python/Job-Results/" + url_part2 + url_part3 + currenTime + ".txt"
 write_text_page = open(write_text_page_name,"w")
+
+write_full_text_page_name = "C:/Users/M0J0/Documents/FOJ_2017/Python/Job-Results/" + "Full-Text" + currenTime + ".txt"
+write_full_text_page = open(write_full_text_page_name,"w")
 
     #Define patterns to search for-------------------------------------------------------------------------------------
     # DO NOT CHANGE!!!
@@ -74,19 +89,19 @@ keyword_list = [
                                         # The code converts all letters to case letters
                                         # Use root words where possible i.e. "prototy" catches all conjugations of Prototyping
                                         # The formating sucks for single letter words. i.e "C" will be found inside ant word with a c, unless you treat it specialy. This is a known bug
-	[1,' c,',' c ', ' c.','c\+\+','python','lua','robot', 'hardware','prototy'],
-	[10, 'control', 'electrical engineer', 'matlab', 'servo'],
-	[30, 'plc', 'microcontroller'],
-	[100, 'lab view', 'labview', 'systems engineer']
+	[10,' c,',' c ', ' c.','c\+\+','python','lua','robot', 'hardware', 'plc'],
+	[10, 'control', 'electrical engineer', 'embedded sys', 'matlab', 'keras', 'Tensorflow', 'scikit learn', 'sklearn', 'canopen'],
+	[30, 'microcontroller', 'servo', 'mcu', 'prototy', 'eagle'],
+	[100, 'opencv', 'open cv', 'systems engineer']
 ]
 
 keyword_list_supers = [                 #2 or more appearances for the words from the first list will award a 1 time bonus 1000 points
                                         #Note, any combination of  words from each super group will count towards threshold\
-	[[2,1000], ['Jr','Junior','entry level','new grad']],     #i.e. 1x 'entry level' + 1x 'new grad', or 2x 'entry level', etc
-    [[2,-200], ['mechanical engineer ']],
-	[[2,-200], ['senior','Sr. ']],          #I am not experienced enough to apply for Sr. level positions.
-    [[2, -1000], ['ph.d', 'phd', 'master\'s degree', 'masters degree', 'ms. degree', 'ms degree', ' ms ']],
-    [[3, -1000], ['Nurse', 'Technician']],  # NO NURSING POSITIONS PLEASE!
+	[[2,2000], ['jr','junior','entry level','new grad']],     #i.e. 1x 'entry level' + 1x 'new grad', or 2x 'entry level', etc
+    [[2,-2000], ['mechanical engineer']],
+	[[3,-2000], ['senior','Sr. ']],          #I am not experienced enough to apply for Sr. level positions.
+    [[2, -2000], ['ph.d', 'phd', 'master\'s degree', 'masters degree', 'ms. degree', 'ms degree', ' ms', 'masters' ]],
+    [[3, -1000], ['nurse', 'technician']],  # NO NURSING POSITIONS PLEASE!
     #[[2, -1000], ['ph.d', 'phd', 'master\'s degree', 'masters degree', 'ms. degree', 'ms degree', ' ms ']], #Comment a line our if you don't want to use it anymore
     [[1,-1000], ['5 years','5+ years', '6 years','6+ years', '7 years','7+ years', '8 years', '8+ years', '9 years','9+ years', '10 years', '10+ years']]
 
@@ -103,7 +118,7 @@ search_count = get_target_data(search_count_style, urlfile)     #Grab the total 
 #print urlfile
 #print search_count
 
-num_of_search_count = int(search_count[0])                      #Make search count into an int
+num_of_search_count = int(search_count[0].replace(',',''))                      #Make search count into an int
 print ("There are :", num_of_search_count, " Results for :", url_part2, " jobs in the :", url_part3[2:], " area.") #url_part2 is the position title, url_part3 is the geographic area
 
 
@@ -119,8 +134,8 @@ urlTail = 0                     #keeps track of how many links we have aggregate
 root = "http://indeed.com"      #Root to append link endings to later
 url_start = url_base            #We will be modifying url_start later
 
-
 while urlTail <= num_of_search_count:
+#while urlTail <= 5:
     temp_index = []
 
     urlfile = get_webpage(url_start)
@@ -151,9 +166,11 @@ index = sort_index(index)
 print index[1][3]
 
 for a in index:
-    write_text_page.write(str(a[3]) + ','+ str(a[4]) + ' : ' + a[0])	##a[3] is type int, so needs to be forced str())
+    write_text_page.write(str(a[3]) + ',' + str(a[4]) + ' : ' + a[0])  ##a[3] is type int, so needs to be forced str())
     write_text_page.write('\n')
-
+    for item in a:
+        write_full_text_page.write(str(item) + ' TOPANGO ')
+    write_full_text_page.write(' TOPANGA ')
 
 SortTime = datetime.now() - SearchTime
 print "Total Time Was : ", SortTime
