@@ -1,3 +1,6 @@
+# Read Me Slightly out of date. Check code for more up-to-date info.
+## Main file has all the information
+
 # JobSearch
 #### This is a program designed to aid in the acquisition of employment by targeting jobs based on skills of the user.
 
@@ -16,14 +19,20 @@
 
 ## How To Use:
 --- Check the Main.py file, and set four major sections:
+
 --- 1. (Line 18) Initial Conditions. Change url part 2 and url part 3 to match your Desired Job Field, and your Desired Job Location respectively. You have to acquire these by going to indeed.com and typing in your desired job title and location, and then cutting the url returned up to match the code.
+
 --- 2. (Line 30) Define a Directory to store your output text file in.
---- 2. (Line 45) Key Words : keyword_list - These are the keywords that will be used to rank your returned job results. Change the integer numbers in each column to match how important a skill is to you in the keyword_list. This list will award a point for every time a word shows up in the job posting. i.e. if you REALLY like arduinos, put it in the 100 points column. You can define new columns by matching the format of the provided example list. Any integers are acceptable in the first column of each list, any number of skills can be added to each column, and any number of columns can be added to keywords_list.
---- 3. (Line 45 )Key Words : keyword_list_supers - These are groups of words that will trigger bonus points if any of the words (or combination) shows up more than a specified threshold. i.e. [[2,1000], ['Jr','Junior','entry level','new grad']]," will trigger 1000 bonus points if 1x 'entry level' + 1x 'new grad', or 2x 'entry level', etc occurs in a job listing.
+
+--- 3. (Line 45) Key Words : keyword_list - These are the keywords that will be used to rank your returned job results. Change the integer numbers in each column to match how important a skill is to you in the keyword_list. This list will award a point for every time a word shows up in the job posting. i.e. if you REALLY like arduinos, put it in the 100 points column. You can define new columns by matching the format of the provided example list. Any integers are acceptable in the first column of each list, any number of skills can be added to each column, and any number of columns can be added to keywords_list.
+
+--- 4. (Line 45 )Key Words : keyword_list_supers - These are groups of words that will trigger bonus points if any of the words (or combination) shows up more than a specified threshold. i.e. [[2,1000], ['Jr','Junior','entry level','new grad']]," will trigger 1000 bonus points if 1x 'entry level' + 1x 'new grad', or 2x 'entry level', etc occurs in a job listing.
 
 ## Results File:
 --- If you want to modify the results format, please do so! ---
+
 --- Currently the results file displays the averaged job listing score (total score / number of characters in listing) followed by the total score, followed by the web link to that listing.
+
 --- Very no-frills, but could use some work.
 
 
