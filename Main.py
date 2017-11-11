@@ -72,7 +72,7 @@ write_full_text_page = open(write_full_text_page_name,"w")
 
     #Define patterns to search for-------------------------------------------------------------------------------------
     # DO NOT CHANGE!!!
-link_style = '\nhref="(.+?)"'     #Pattern of our links to aggregate on indeed.com
+link_style = 'turnstileLink" href="(.+?)"'     #Pattern of our links to aggregate on indeed.com
 name_style = '<title[^.]*>(.+?)</title>'        #Pattern of the name of a given job (Not Very Accurate)
 #search_count_style = '<div id="searchCount">Jobs[^.]*of (.+?)</div>'    #Pattern of "Total number of jobs" result=
 search_count_style = '[^.]*of (.+?)</div>'    #Pattern of "Total number of jobs" result=
@@ -141,12 +141,14 @@ while urlTail <= num_of_search_count:
 
     urlfile = get_webpage(url_start)
     links = get_target_data(link_style, urlfile)
+    #for a in links:
+    #    print(a)
     full_links = make_full_link(links,root)
     temp_index = fill_index(temp_index, full_links)
-#    temp_index = get_title(name_style,temp_index)
-#    temp_index = job_rater(temp_index, keyword_list_master)
+    temp_index = get_title(name_style,temp_index)
+    temp_index = job_rater(temp_index, keyword_list_master)
 
-    print(urlfile)
+    #print(urlfile)
     for a in temp_index:
         print(a)
         index.append(a)
