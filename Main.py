@@ -41,21 +41,22 @@ from Functions.makeFullLink import make_full_link
     #"http://www.indeed.com/jobs?q=Robotics+Engineer&l=Los+Angeles%2C+CA"
     # ??? You can get this by typing a location/title of a job into indeed.com, and then porting it here
 
+a = "http://www.indeed.com/jobs?q=Embedded+Systems&l=Miami%2C+FL"
 
 # Search for a job in Indeed.com to make sure the initial formatting is right
-url_part1 = "http://www.indeed.com/jobs?q="     # - Leave Me - The root of initial indeed.com searches
-url_part2 = "Robotics+Engineering"              # - Change Me - Part where target job area is defined, with + inbetween multiple words
-url_part3 = "&l=Los+Angeles%2C+CA"                   # - Change Me - City with +'s inbetween, state with %2C+ before 2 letter abreviation
-url_base = url_part1 + url_part2 + url_part3    #first web address
+#url_part1 = "http://www.indeed.com/jobs?q="     # - Leave Me - The root of initial indeed.com searches
+#url_part2 = "Embedded+Systems"              # - Change Me - Part where target job area is defined, with + inbetween multiple words
+#url_part3 = "&l=Miami%2C+FL"                   # - Change Me - City with +'s inbetween, state with %2C+ before 2 letter abreviation
+#url_base = url_part1 + url_part2 + url_part3    #first web address
 
 # LA
-#url_base = 'http://www.indeed.com/jobs?q=Microcontroller&l=Los+Angeles%2C+CA'
+url_base = 'http://www.indeed.com/jobs?q=Microcontroller&l=Los+Angeles%2C+CA'
 
 # CA
-# Not Search Yet
-url_base = 'http://www.indeed.com/jobs?q=Embedded+Systems&l=CA'
-url_part2 = 'Embedded_Systems'
-url_part3 = 'CA'
+# Searched
+#url_base = 'http://www.indeed.com/jobs?q=Embedded+Systems&l=CA'
+url_part2 = 'Microcontroller'
+url_part3 = 'LA'
 
 
 
@@ -145,7 +146,9 @@ while urlTail <= num_of_search_count:
 #    temp_index = get_title(name_style,temp_index)
 #    temp_index = job_rater(temp_index, keyword_list_master)
 
+    print(urlfile)
     for a in temp_index:
+        print(a)
         index.append(a)
 
     print url_start
@@ -156,14 +159,14 @@ while urlTail <= num_of_search_count:
 #
 SearchTime = datetime.now() - startTime
 print ("Web Search Time Was : ", SearchTime)
-#index = fill_index(index, full_links)
+index = fill_index(index, full_links)
 index = get_title(name_style, index)
 index = job_rater(index, keyword_list_master)
 #
 
 index = sort_index(index)
 
-print index[1][3]
+#print index[1][3]
 
 for a in index:
     write_text_page.write(str(a[3]) + ',' + str(a[4]) + ' : ' + a[0])  ##a[3] is type int, so needs to be forced str())
