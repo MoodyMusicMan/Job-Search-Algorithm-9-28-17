@@ -42,21 +42,23 @@ from Functions.makeFullLink import make_full_link
     # ??? You can get this by typing a location/title of a job into indeed.com, and then porting it here
 
 a = "http://www.indeed.com/jobs?q=Embedded+Systems&l=Miami%2C+FL"
-
+b = "https://www.indeed.com/jobs?q=Engineer&l=Miami%2C+FL"
 # Search for a job in Indeed.com to make sure the initial formatting is right
-#url_part1 = "http://www.indeed.com/jobs?q="     # - Leave Me - The root of initial indeed.com searches
-#url_part2 = "Embedded+Systems"              # - Change Me - Part where target job area is defined, with + inbetween multiple words
-#url_part3 = "&l=Miami%2C+FL"                   # - Change Me - City with +'s inbetween, state with %2C+ before 2 letter abreviation
-#url_base = url_part1 + url_part2 + url_part3    #first web address
+url_part1 = "http://www.indeed.com/jobs?q="     # - Leave Me - The root of initial indeed.com searches
+#url_part2 = "Engineer"              # - Change Me - Part where target job area is defined, with + inbetween multiple words
+#url_part2 = 'Microcontroller'
+url_part2 = 'Robotics+Engineer'
+url_part3 = "&l=Miami%2C+FL"                   # - Change Me - City with +'s inbetween, state with %2C+ before 2 letter abreviation
+url_base = url_part1 + url_part2 + url_part3    #first web address
 
 # LA
-url_base = 'http://www.indeed.com/jobs?q=Microcontroller&l=Los+Angeles%2C+CA'
+#url_base = 'http://www.indeed.com/jobs?q=Microcontroller&l=Los+Angeles%2C+CA'
 
 # CA
 # Searched
 #url_base = 'http://www.indeed.com/jobs?q=Embedded+Systems&l=CA'
-url_part2 = 'Microcontroller'
-url_part3 = 'LA'
+#url_part2 = 'Microcontroller'
+#url_part3 = 'LA'
 
 
 
@@ -72,10 +74,17 @@ write_full_text_page = open(write_full_text_page_name,"w")
 
     #Define patterns to search for-------------------------------------------------------------------------------------
     # DO NOT CHANGE!!!
-link_style = 'turnstileLink" href="(.+?)"'     #Pattern of our links to aggregate on indeed.com
+link_style2 = 'turnstileLink" href="(.+?)"'     #Pattern for grabbing our advertisement links of indeed.com
+#link_style2 = 'jobtitle">[^.]*href="(.+?)"'     #Pattern of our links to aggregate on indeed.com
+#link_style = '<h2 class="jobtitle" id=[^.]*href="(.+?)"'
+link_style = '<h2 id=[^.?]* class="jobtitle">[^.?]*href="(.+?)"' # Had to add the ? to the s>[^.?] in order to make it non-greedy. Previously it was attempting to grab all of the data between the most amount of matching syntax it could find.. Interesting resutls.
+
+#link_style = 'Jobs[^.?]*of (.+?)</div>'    #Pattern of "Total number of jobs" result=
 name_style = '<title[^.]*>(.+?)</title>'        #Pattern of the name of a given job (Not Very Accurate)
 #search_count_style = '<div id="searchCount">Jobs[^.]*of (.+?)</div>'    #Pattern of "Total number of jobs" result=
-search_count_style = '[^.]*of (.+?)</div>'    #Pattern of "Total number of jobs" result=
+#search_count_style = '[^.]*of (.+?)</div>'    #Pattern of "Total number of jobs" result= // Depricated
+search_count_style = 'Jobs[^.?]*of (.+?)</div>'    #Pattern of "Total number of jobs" result=
+
 
     #Define KeyWords List Declaration-----------------------------------------------------------------------------------------------
     ## DO NOT CHANGE
@@ -116,11 +125,12 @@ startTime = datetime.now()
 urlfile = get_webpage(url_base)     #Make the first client request
 search_count = get_target_data(search_count_style, urlfile)     #Grab the total number of job results
 
+
 #print urlfile
 #print search_count
 
 num_of_search_count = int(search_count[0].replace(',',''))                      #Make search count into an int
-print ("There are :", num_of_search_count, " Results for :", url_part2, " jobs in the :", url_part3[2:], " area.") #url_part2 is the position title, url_part3 is the geographic area
+print ("There are  " + str(num_of_search_count) +  " Results for " + str(url_part2).replace('+', ' ') + " jobs in the " + str( url_part3[2:]).replace('=','').replace('%2C+',', ') +  " area.") #url_part2 is the position title, url_part3 is the geographic area
 
 
 #6:29:001100
@@ -140,9 +150,11 @@ while urlTail <= num_of_search_count:
     temp_index = []
 
     urlfile = get_webpage(url_start)
+    #print(urlfile)
     links = get_target_data(link_style, urlfile)
-    #for a in links:
-    #    print(a)
+    link2 = get_target_data(link_style, urlfile)
+    for a in link2:
+        links.append(a)
     full_links = make_full_link(links,root)
     temp_index = fill_index(temp_index, full_links)
     temp_index = get_title(name_style,temp_index)
@@ -150,7 +162,7 @@ while urlTail <= num_of_search_count:
 
     #print(urlfile)
     for a in temp_index:
-        print(a)
+        #print(a)
         index.append(a)
 
     print url_start
@@ -161,12 +173,21 @@ while urlTail <= num_of_search_count:
 #
 SearchTime = datetime.now() - startTime
 print ("Web Search Time Was : ", SearchTime)
-index = fill_index(index, full_links)
-index = get_title(name_style, index)
-index = job_rater(index, keyword_list_master)
-#
 
+for item in index:
+    print item[0]
+
+
+#print ("Length of index pre Fill = " + str(len(index)))
+#index = fill_index(index, full_links)
+#print ("Length of index pre Title = " + str(len(index)))
+#index = get_title(name_style, index)
+#print ("Length of index pre Rate = " + str(len(index)))
+#index = job_rater(index, keyword_list_master)
+#
+print ("Length of index pre sort = " + str(len(index)))
 index = sort_index(index)
+print ("Length of index post sort = " + str(len(index)))
 
 #print index[1][3]
 

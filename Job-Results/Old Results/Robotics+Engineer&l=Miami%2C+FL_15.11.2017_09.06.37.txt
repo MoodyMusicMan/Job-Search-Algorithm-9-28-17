@@ -1,0 +1,11 @@
+0.0370398084406,3960 : http://indeed.com/company/DBP-ROBOTICS/jobs/Coach-Robotic-Electronic-Kids-2c26d2088bb43e64?fccid=6c0fef4e641a75e8
+0.0613625270204,3520 : http://indeed.com/cmp/Stryker
+0.0903494043336,3390 : http://indeed.com/rc/clk?jk=9c3e9f16dfb2654f&fccid=7847eeddd5ec77ae
+0.0682142129912,3350 : http://indeed.com/cmp/Kinetix
+0.0576483714999,2170 : http://indeed.com/rc/clk?jk=701b97ad35bf1588&fccid=7847eeddd5ec77ae
+0.0390440562234,2150 : http://indeed.com/rc/clk?jk=822fe247e55662cd&fccid=79db18b5a5bd4daa
+0.0620478922425,1990 : http://indeed.com/cmp/American-Welding-Society
+0.0623288318066,1980 : http://indeed.com/cmp/Automation-Anywhere
+0.0237880844544,1770 : http://indeed.com/company/National-Molding,-LLC/jobs/Senior-Process-Engineer-e34f55fc95439637?fccid=e6790b2a5e5d4e31
+0.0336291638477,1690 : http://indeed.com/cmp/Magic-Leap
+-0.00132888403272,-90 : http://indeed.com/rc/clk?jk=fb2b69bb4bdefd70&fccid=250b3b23ab6d1a65

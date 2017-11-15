@@ -7,7 +7,8 @@ import re
 #Returns: an array of all instances of recognized pattern (Our Links in most cases)
 
 def get_target_data(pattern, filez):
-	patternz = re.compile(pattern)
-	links = re.findall(patternz,filez)
+	regex = re.compile(pattern, re.S)
+	#re.DOTALL
+	links = regex.findall(filez)
 	return links
 
